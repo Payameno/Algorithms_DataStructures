@@ -1,18 +1,88 @@
+//Binary heap: constructor(node)
+//methods of min binary heap: 1-enqueue 2- dequeue 3-swap 4-sinkdown 5-bubbleup  
+//Node has(value, left, right)
+
+// Input: points = [[3,3],[5,-1],[-2,4]], k = 2
+// Input: points = [[3,3],[5,-1],[-2,4],[3,3],[5,-1]], k = 2
+// Output: [[3,3],[-2,4]]
+
+
+class MaxHeap {
+
+  private heap: number[][] = [];
+
+  construction(points: number[][]) {
+    this.buildHeap(points);
+  }
+
+  buildHeap(points: number[][]):void {
+    this.heap = points;
+      for (let i = Math.floor(this.heap.length/2); i >=0; i--) {
+      this.siftDown(i);
+    }
+  }
+
+  private findParentindex(childIdx: number){
+    return Math.floor(childIdx - 1 / 2);
+  }
+
+  private findLeftChildrenIndex(parentIdx: number){
+    return parentIdx * 2 + 1;
+  }
+
+  private findRightChildrenIndex(parentIdx: number){
+    return parentIdx * 2 + 2;
+  }
+
+  private siftUp(){
+
+  }
+
+  private siftDown(index: number) :void {
+    let maxIdx = index;
+    let leftChildIdx = this.findLeftChildrenIndex(index);
+    let rightChildIdx = this.findRightChildrenIndex(index);
+
+    //if statement to check whethr distance of left children is lower or larger than parent
+    if (leftChildIdx < this.heap.length && this.distance(this.heap[leftChildIdx]) > this.distance(this.heap[maxIdx])) {
+      maxIdx = leftChildIdx;
+    }
+
+    //same for the right children
+    if (rightChildIdx < this.heap.length && this.distance(this.heap[rightChildIdx]) > this.distance(this.heap[maxIdx])) {
+      maxIdx = rightChildIdx;
+    }
+
+    if (index !== maxIdx) {
+      this.swap(index, maxIdx);
+      this.siftDown(index);
+    }
+  }
+
+  private swap(idx1: number, idx2: number){
+    [this.heap[idx1], this.heap[idx2]] = [this.heap[idx2], this.heap[idx1]]
+  }
+
+  private distance(point: number[]) {
+    return point[0] ** 2 + point[1] ** 2;
+  }
+
+  public add(){
+
+  }
+
+  public removeMax(){
+
+  }
+
+}
+
+
+
+
 function kClosest(points: number[][], k: number): number[][] {
 
-  let distances: number[] = [];
-
-  points.forEach(element => {
-    const x = element[0];
-    const y = element[1];
-    const dist = Math.sqrt(x^2 + y^2);
-    distances.push(dist);
-  });
-
-  //store them in an object {key: value}
-  //retirve k items from object and push to an array, rturn it
+  //a min binary heap class can be written
+  // you can then dequeue from the heap for k times to acquire k closests points
 
 }; 
-
-//Input: points = [[3,3],[5,-1],[-2,4]], k = 2
-// Output: [[3,3],[-2,4]]

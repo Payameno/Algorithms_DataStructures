@@ -1,9 +1,9 @@
 //3. Longest Substring Without Repeating Characters
 //Given a string s, find the length of the longest substring without repeating characters.
 
-// Input: s = "abcabcbb"
-//            L
-//                R
+// Input: s = "abcabcbb" || "abba" || "abcbad"
+//                                       L
+//                                         R
 //      maxLength
 // Output: 3
 // Explanation: The answer is "abc", with the length of 3.
@@ -13,7 +13,7 @@
 function lengthOfLongestSubstring(s: string): number {
 
   //We would need to map every character to an index
-  const charMap: Map<string,number> = new Map(s);
+  const charMap: Map<string,number> = new Map();
 
   let right = 0;
   let left = 0;
@@ -29,11 +29,13 @@ function lengthOfLongestSubstring(s: string): number {
           left = charMap.get(char) + 1
         }
 
-        //Char does not exist
         charMap.set(s[right],right);
         maxLength = Math.max(maxLength, right - left + 1);
         right++;
         
       }
       return maxLength;
-};
+}; 
+
+
+// && charMap.get(char) >= left
