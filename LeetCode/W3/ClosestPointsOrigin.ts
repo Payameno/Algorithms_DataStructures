@@ -34,8 +34,14 @@ class MaxHeap {
     return parentIdx * 2 + 2;
   }
 
-  private siftUp(){
+  private siftUp(index: number){
+    let parentIdx = this.findParentindex(index);
 
+   while (index > 0 && this.distance(this.heap[index]) > this.distance(this.heap[parentIdx])) {
+      this.swap(parentIdx, index);
+      index = parentIdx ;
+      parentIdx = this.findParentindex(index);
+    }
   }
 
   private siftDown(index: number) :void {
@@ -67,17 +73,20 @@ class MaxHeap {
     return point[0] ** 2 + point[1] ** 2;
   }
 
-  public add(){
-
+  public add(point: number[]):void {
+    this.heap.push(point);
+    this.siftUp(this.heap.length-1);
   }
 
   public removeMax(){
-
+    const result = this.heap[0];
+    this.heap[0] = this.heap[this.heap.length-1];
+    this.heap.pop();
+    this.siftDown(0);
+    return result;
   }
 
 }
-
-
 
 
 function kClosest(points: number[][], k: number): number[][] {
@@ -86,3 +95,4 @@ function kClosest(points: number[][], k: number): number[][] {
   // you can then dequeue from the heap for k times to acquire k closests points
 
 }; 
+
