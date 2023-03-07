@@ -9,9 +9,9 @@
 
 class MaxHeap {
 
-  private heap: number[][] = [];
+  public heap: number[][] = [];
 
-  construction(points: number[][]) {
+  constructor(points: number[][]) {
     this.buildHeap(points);
   }
 
@@ -23,7 +23,7 @@ class MaxHeap {
   }
 
   private findParentindex(childIdx: number){
-    return Math.floor(childIdx - 1 / 2);
+    return Math.floor((childIdx - 1)/ 2);
   }
 
   private findLeftChildrenIndex(parentIdx: number){
@@ -61,7 +61,7 @@ class MaxHeap {
 
     if (index !== maxIdx) {
       this.swap(index, maxIdx);
-      this.siftDown(index);
+      this.siftDown(maxIdx);
     }
   }
 
@@ -69,7 +69,7 @@ class MaxHeap {
     [this.heap[idx1], this.heap[idx2]] = [this.heap[idx2], this.heap[idx1]]
   }
 
-  private distance(point: number[]) {
+  public distance(point: number[]) {
     return point[0] ** 2 + point[1] ** 2;
   }
 
@@ -85,14 +85,26 @@ class MaxHeap {
     this.siftDown(0);
     return result;
   }
-
 }
 
 
 function kClosest(points: number[][], k: number): number[][] {
 
-  //a min binary heap class can be written
-  // you can then dequeue from the heap for k times to acquire k closests points
+  //create a new heap with k number of first elements in the nested array
+  //create a c type loop to go through the rest elements
+  //compare the rest of elements if their distance is less than maxhpea
+  //if less, remove Max and add this element to the heap.
+  //by the end of the loop kth closest points in the array of points is left inside the heap
 
+  const heap = new MaxHeap(points.slice(0,k));
+  for (let i = k; i < points.length; i++) {
+    if (heap.distance(points[i]) < heap.distance(heap.heap[0])){
+      heap.removeMax();
+      heap.add(points[i]);
+    }
+  }
+  return heap.heap;
 }; 
 
+//[1,2,3,4,5] k=2 length=5
+// .slice(0,2) = [1,2]
