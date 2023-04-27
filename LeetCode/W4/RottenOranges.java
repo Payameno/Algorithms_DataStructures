@@ -1,5 +1,7 @@
 package W4;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /*
  * 2 1 1
  * 1 1 0
@@ -11,8 +13,8 @@ class RottenOranges {
   public int orangesRotting(int[][] grid) {
     if (grid==null || grid.length==0) return -1;
 
-    int numMinutes = 0;
-    int numFresh = 0;
+    AtomicInteger numMinutes = new AtomicInteger(0);
+    AtomicInteger numFresh = new AtomicInteger(0);
     int numRows = grid.length;
     int numCols = grid[0].length;
     
@@ -21,7 +23,7 @@ class RottenOranges {
       
       for (int j=0; j<numCols; j++) {
         if (grid[i][j]==1) {
-          numFresh++;
+          numFresh.getAndIncrement();
         }
       }
       
@@ -30,7 +32,7 @@ class RottenOranges {
     //Vertical - Find rotten oranges and set minute per loop
     Thread thread1 = new Thread(()-> {
       for (int i=0; i<numRows; i++) {
-        int prevNumFresh = numFresh;
+        AtomicInteger prevNumFresh = numFresh;
   
         for (int j=0; j<numCols; j++) {
   
@@ -53,12 +55,12 @@ class RottenOranges {
                 if (grid[row][col]==1) {
                   grid[row][col]=2;
                   
-                  numFresh--;
+                  numFresh.getAndDecrement();
                 }
               }
           }
-          if (prevNumFresh>numFresh) {
-            numMinutes++;
+          if (prevNumFresh.get()>numFresh.get()) {
+            numMinutes.getAndIncrement();
             prevNumFresh = numFresh;
           }
         }
@@ -68,7 +70,7 @@ class RottenOranges {
         //Horizental - Find rotten oranges and set minute per loop
         Thread thread2 = new Thread(()-> {
           for (int j=0; j<numCols; j++) {
-            int prevNumFresh = numFresh;
+            AtomicInteger prevNumFresh = numFresh;
       
             for (int i=0; i<numRows; i++) {
       
@@ -91,12 +93,12 @@ class RottenOranges {
                     if (grid[row][col]==1) {
                       grid[row][col]=2;
                       
-                      numFresh--;
+                      numFresh.getAndDecrement();
                     }
                   }
               }
-              if (prevNumFresh>numFresh) {
-                numMinutes++;
+              if (prevNumFresh.get()>numFresh.get()) {
+                numMinutes.getAndIncrement();
                 prevNumFresh = numFresh;
               }
             }
@@ -106,7 +108,7 @@ class RottenOranges {
     thread1.start();
     thread2.start();
 
-    return numFresh == 0 ? numMinutes: -1;
+    return numFresh.get() == 0 ? numMinutes.get(): -1;
   }  
 
 }
