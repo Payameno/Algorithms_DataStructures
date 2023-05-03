@@ -1,56 +1,38 @@
 class Solution {
     public int search(int[] nums, int target) {
 
+      //Solving using two pointer logic
+
       int midIdx = 0;
-      int size = nums.length;
-      int leftIdx;
-      int rightIdx;
-      int ans = -1;
+      int leftIdx = 0;
+      int rightIdx = nums.length-1;
 
-      if(size%2==0) {
-        midIdx = size/2;
-      } else if (size%2!=0) {
-        midIdx = Math.round(size/2);
+      while (leftIdx<=rightIdx) {
+        midIdx = Math.round(leftIdx+rightIdx)/2;
+        
+        if (nums[midIdx]==target) return midIdx;
+        if (nums[rightIdx]==target) return rightIdx;
+        if (nums[leftIdx]==target) return leftIdx;
+
+        if (nums[leftIdx]<=nums[midIdx]) {
+
+          if (target>nums[midIdx] || target<nums[leftIdx]) {
+            leftIdx = midIdx+1;
+          } else {
+            rightIdx = rightIdx-1;
+          }
+
+        } else {
+
+          if (target<nums[rightIdx] || target>nums[midIdx]) {
+            rightIdx = rightIdx-1;
+          } else {
+            leftIdx = leftIdx-1;
+          }
+
+        }
       }
 
-      if (target==nums[midIdx]) {
-        ans = midIdx;
-      } else if (nums[midIdx]>target) {
-        leftIdx = 0;
-        rightIdx = midIdx-1;
-
-        while (leftIdx<=rightIdx) {
-          if (nums[leftIdx]==target) {
-            ans = leftIdx;
-          } else if (nums[rightIdx]==target) {
-            ans = rightIdx;
-          } else {
-            leftIdx++;
-            rightIdx--;
-          } 
-
-          if (leftIdx==rightIdx && leftIdx!=target) return -1;
-        }
-        
-      } else if (target>nums[midIdx]) {
-
-        leftIdx = midIdx+1;
-        rightIdx = size-1;
-
-        while (leftIdx<=rightIdx) {
-          if (nums[leftIdx]==target) {
-            ans = leftIdx;
-          } else if (nums[rightIdx]==target) {
-            ans = rightIdx;
-          } else {
-            leftIdx++;
-            rightIdx--;
-          } 
-
-          if (leftIdx==rightIdx && leftIdx!=target) return -1;
-        }
-        
-      }
-      return ans;
+      return -1;
     }
 }
