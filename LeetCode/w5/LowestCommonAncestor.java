@@ -37,9 +37,17 @@ class Solution {
 }
 
 /*
-Time complexity of the code: recursive: worst case O(n) as the recursive
-function will visit every node in the tree.
+Time complexity : 
+recursive: worst case O(n) as the recursive
+function will visit every node in the tree. That's when p and q are farthest
+nodes in the tree.
+Best case: O(1) where root is either null,p or q
 
+Memory complexity: O(h) where h is the height of the binary tree
+Each recursive call creates a new stack frame which takes up memory space
+The maximum number of stack frames created during the recursion is equal to 
+the height of the binary tree.
 
-
-*/
+worst case: where binary tree is a skewed tree (all nodes either right or left)
+in this case O(n)
+*/ 
