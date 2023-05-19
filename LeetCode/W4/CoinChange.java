@@ -1,75 +1,37 @@
-package W4;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 class CoinChange {
-  List<Integer> denominations = new ArrayList<>();
-  int denomSize;
-  
+
   public int coinChange(int[] coins, int amount) {
-  
-    if (amount==0) return 0;
-    
-    for (int i=0; i<coins.length;i++) {
-      denominations.add(coins[i]);
+    int[] dp = new int[amount+1];
+    Arrays.fill(dp, amount+1);
+    dp[0] = 0;
+    for (int c:coins) {
+      for (int i=c; i<=amount; i++) {
+        dp[i] = Math.min(dp[i], dp[i-c]+1);
+      }
     }
 
-    denomSize = denominations.size();
-
-    //Map existing results for a denominations
-    //This will save calculation time
-    Map<Integer,Integer> calculatedResults = new HashMap<Integer,Integer>();
-
-    //Method call to populate maps
-    return minCoinsUtil(amount, calculatedResults);
-
-  }
-
-  private int minCoinsUtil(int amount, Map<Integer,Integer> calculatedResults) {
-      
-    int result = Integer.MAX_VALUE;
-    int smallerProblemResult;
-    int candidateAnswer;
-    int remainder;
-
-    for (int coin : denominations) {
-      if (amount == coin) {
-        return 1;
-      }
-    }  
-      //if coins used is already calculated for the amount
-      if (calculatedResults.containsKey(amount)) {
-        return calculatedResults.get(amount);
-      }
-
-    for (int i=0; i<denomSize; i++) {
-
-      if(i == denomSize-1 && amount-denominations.get(i)!=0) return -1;
-
-      if (amount>denominations.get(i)) {
-        remainder = amount-denominations.get(i);
-
-        smallerProblemResult = minCoinsUtil(remainder, calculatedResults);
-        candidateAnswer = smallerProblemResult+1;
-
-        if (candidateAnswer<result) {
-          result = candidateAnswer;
-          calculatedResults.put(amount, result);
-        }
-
-      }
-
-    }
-
-    calculatedResults.put(amount, result);
-    return result;
+    return dp[amount]<=amount? dp[amount] : -1;
   }
 
 }
 
+
+/*
+ * 1 Coin          2 coin             5 coin  
+dp[0] = 0        
+
+dp[1] = 1         
+dp[2]            dp[2] = 1
+dp[3]            dp[3] = 2
+d p[4]           dp[4] = 2
+dp[5]            dp[5] = 3                  dp[5] = 1 
+dp[6]            dp[6] = 3                  dp[6] = 2
+dp[7]            dp[7] = 4
+dp[8]            dp[8] = 4  
+dp[9]            dp[9] = 5
+dp[10]           dp[10] = 5 
+dp[11] = 11      dp[11] = 6                dp[11] = 3 
+dp[12] = 12
+ */
