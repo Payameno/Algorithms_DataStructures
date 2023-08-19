@@ -94,7 +94,7 @@ class solution {
         break;
       }
 
-    }
+    }            queue.add(null);            queue.add(null);
 
     //Return the tree
     Node root = new Node(Integer.parseInt(curEl), children);
@@ -106,4 +106,10 @@ class solution {
 
 /*
  * Solution: Depth First Approach
+ *                          
+ *                               root(1)
+ *                        2         3       4
+ *                   5   6  7       8  
+ * 
+ *   String : 1,
  */
