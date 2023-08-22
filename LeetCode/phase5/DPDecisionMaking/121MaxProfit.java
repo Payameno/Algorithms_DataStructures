@@ -10,7 +10,7 @@ class Solution {
       for (int i = len - 2; i >= 0; i--) {
 
         maxPrice = Math.max(prices[i], maxPrice);
-        maxProfit = Math.max(maxProfit, prices[i] - );
+        maxProfit = Math.max(maxProfit, maxPrice - prices[i]);
 
       } 
 
@@ -22,3 +22,4 @@ class Solution {
 //[7,6,6,6,6,4]
 //         ^
 //[7,1,5,3,6,4]
+//           ^
