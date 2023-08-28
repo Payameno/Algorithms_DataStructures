@@ -1,4 +1,4 @@
-public class 283MoveZeros {
+class 283MoveZeros {
   
   public void moveZeroes(int[] nums) {
 
@@ -30,7 +30,7 @@ public class 283MoveZeros {
 
 /*
  * Input: nums = [1,12,0,0,0]
-                    L
+                       L
                            R
 
                  [1,0,0,3,12]

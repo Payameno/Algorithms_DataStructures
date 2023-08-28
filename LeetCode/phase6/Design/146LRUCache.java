@@ -1,90 +1,106 @@
 import java.util.*;
 
-class doublyLinkedNode {
-  int value;
-  int key;
-  doublyLinkedNode next;
-  doublyLinkedNode prev;
-}
-
 class LRUCache {
 
-    private HashMap<Integer, doublyLinkedNode> map = new HashMap<>();
-    private int capacity;
-    private doublyLinkedNode head, tail;
-    private int nodeCount;
-    
-    public LRUCache(int capacity) {
-      this.capacity = capacity;
-      this.head = new doublyLinkedNode();
-      this.tail = new doublyLinkedNode();
-      this.nodeCount = 0;
+      class doublyLinkedNode {
+        int value;
+        int key;
+        doublyLinkedNode next;
+        doublyLinkedNode prev;
+      }
 
-      head.next = tail;
-      tail.prev = head;
-    }
+      //Adding new node right after head
+      private void addNode(doublyLinkedNode node) {
 
-    //Adding new node right after head
-    private void addNodeToHead(doublyLinkedNode node) {
-      doublyLinkedNode pre = head;
-      doublyLinkedNode after = head.next;
+      node.prev = head;
+      node.next = head.next;
 
-      pre.next = node;
-      node.prev = pre;
+      head.next.prev = node;
+      head.next = node;
 
-      after.prev = node;
-      node.next = after;
-    }
+      }
 
-    private doublyLinkedNode removeTailNode() {
+      private void moveToHead(doublyLinkedNode node) {
+
+        remove(node);
+        addNode(node);
+
+      }
+
+      private doublyLinkedNode removeTailNode() {
       doublyLinkedNode node = tail.prev;
+      cache.remove(node.value);
       remove(node);
       return node;
-    }
+      }
 
-    private void remove (doublyLinkedNode node) {
+      private void remove (doublyLinkedNode node) {
 
       doublyLinkedNode pre = node.prev;
-      pre.next = tail;
-      tail.prev = pre;
+      doublyLinkedNode nex = node.next;
 
-      node.next = null;
-      node.prev = null;
+      pre.next = nex;
+      nex.prev = pre;
+
+      }
+
+      private HashMap<Integer, doublyLinkedNode> cache = new HashMap<>();
+      private int capacity, counter;
+      private doublyLinkedNode head, tail;
+
+      //Constructor
+      public LRUCache(int capacity) {
+      this.capacity = capacity;
+      this.counter = 0;
+      this.head = new doublyLinkedNode();
+      this.tail = new doublyLinkedNode();
+
+      head.next = tail;
+      head.prev = null;
+      tail.prev = head;
+      tail.next = null;
     }
     
     public int get(int key) {
 
-      doublyLinkedNode node = map.get(key);
-      if (node == null) return -1;
+      if (!cache.containsKey(key)) return -1;
+
+      doublyLinkedNode node = cache.get(key);
 
       //return value + move node to head 
-      addNodeToHead(node);
+      moveToHead(node);
 
       return node.value;
     }
     
     public void put(int key, int value) {
 
-      doublyLinkedNode node = map.get(key);
+      doublyLinkedNode node = cache.get(key);
 
       if (node == null) {
+
+        //Create a new  node and place it to the head
         doublyLinkedNode newNode = new doublyLinkedNode();
         newNode.value = value;
         newNode.key = key;
 
-        map.put(key, newNode);
-        addNodeToHead(newNode);
-        nodeCount++;
+        addNode(newNode);
+        cache.put(key, newNode);
+        counter++;
 
         //Check the capacity
-        if (nodeCount > capacity) {
-        doublyLinkedNode tailNode = removeTailNode();
-        map.remove(tailNode.key);
-        nodeCount--;
-      } 
+        if (counter > capacity) {
+          doublyLinkedNode tailNode = removeTailNode();
+          cache.remove(tailNode.value);
+          counter--;
+        } 
 
       } else {
+        //Update the value of the existing node
         node.value = value;
+
+        //Move the existing node to the head
+        moveToHead(node);
       }
 
     }

@@ -6,7 +6,7 @@ class Solution {
       int[] result = new int[n];
 
       // define pointers
-      int l = 0, r = n - 1, index = n - 1;;
+      int l = 0, r = n - 1, index = n - 1;
 
       while (index >= 0) {
 

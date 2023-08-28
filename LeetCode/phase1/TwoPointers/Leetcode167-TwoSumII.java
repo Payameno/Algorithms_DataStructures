@@ -6,7 +6,7 @@ class Solution {
       int len = numbers.length;
       int L = 0, R = len-1;
 
-      while (R<L) {
+      while (L<R) {
         int curSum = numbers[L] + numbers[R];
 
         if (curSum==target) {

@@ -1,4 +1,5 @@
-import java.util.List;
+import java.util.HashSet;
+import java.util.set;
 
 class Solution {
 
@@ -7,28 +8,29 @@ class Solution {
       int n = nums.length;
         
       //base
-      if (n<3) return n;
+      if (n<2) return n;
 
       //Pointers definition
       int l = 0, r = 1;
 
-      //value map
-      List<Integer> map = new ArrayList<>();
+      //value set
+      HashSet<Integer> set = new HashSet<>();
 
       //solution
       while (r<n) {
 
         if (nums[l] == nums[r]) {
-          if (map.indexOf(nums[l]) != -1) {
-            map.add(nums[l]);
+          if (!set.contains(nums[l])) {
+            set.add(nums[l]);
           }
           r++;
           l++;
         } else {
 
-          if (map.indexOf(nums[r]) != -1) {
-            map.add(nums[r]);
+          if (!set.contains(nums[r])) {
+            set.add(nums[r]);
 
+            //swap left with right to form an array without duplicates on the left
             int temp = nums[l];
             nums[l] = nums[r];
             nums[r] = temp;
@@ -37,15 +39,16 @@ class Solution {
             l++;
           }
 
-          if (map.indexOf(nums[l]) != -1 && map.indexOf(nums[r]) != -1) {
-            r++;
+          //If both pointers are in the list 
+          if (set.contains(nums[l]) && set.contains(nums[r])) {
+            ++r;
           }
 
         }
 
       }
 
-      return map.size();
+      return set.size();
 
     }
 
