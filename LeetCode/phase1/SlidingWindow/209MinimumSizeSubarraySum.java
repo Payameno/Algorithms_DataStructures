@@ -24,3 +24,19 @@ class MinimumSizeSubarraySum {
       
   }
 }
+
+/*
+ * Time Complexity: O(n)
+
+The outer while loop iterates through the array once, giving O(n) time.
+The inner while loop may iterate several times but in total across all iterations of the outer loop it does not exceed O(n).
+So the overall time complexity is O(n).
+Space Complexity: O(1)
+
+No extra space is used, only integer variables. The input array is not modified.
+So the space complexity is constant O(1).
+In summary:
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+ */
