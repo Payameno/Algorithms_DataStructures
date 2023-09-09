@@ -41,6 +41,12 @@ class Solution {
 }
 
 /*
- * Time complexity O(N)
- * Space Complexity O()
+ * Time complexity O(n)
+ * 
+ * Space Complexity O(logn)
+ * or O(logh) where h is the height of the tree h = log(n) in a balanced tree.
+ * These are the maximum values stored in the stack at a given time
+ * 
+ * space complexity in worse case scenario when we have a linkedlist would
+ * be O(n). 
  */
