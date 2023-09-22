@@ -15,14 +15,13 @@ Public class KnapSackBruteForce {
   //Brute force
   public int KnapSack(int capacity) {
 
-    helper(0, capacity, 0) {
-
-    }
+    return helper(0, capacity, 0);
 
   }
 
   private int helper(int index, int capacity, int curProfits) {
 
+    //Base case
     if (capacity < 0) return 0;
     if (index >= profits.length) return curProfits;
     

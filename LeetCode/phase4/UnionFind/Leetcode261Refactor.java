@@ -1,16 +1,31 @@
-class Solution {
-    public int findCircleNum(int[][] isConnected) {
-        int n = isConnected.length;
+class solution {
+
+    /*
+    Valid tree:
+    1-There is only one component
+    2-There is no cycle in the graph
+    */
+
+
+    public boolean validTree(int n, int[][] edges) {
+
         UnionFind uf = new UnionFind(n);
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                if(i == j || isConnected[i][j] == 0) continue;
-                uf.union(i, j);
-            }
+
+        for (int[] edge : edges) {
+            /*
+            here we perform union while also checking if they have
+            same parent
+            UnionFind class is slightly modified
+            */
+            if (!uf.union(edge[0], edge[1])) return false;
         }
-        return uf.numOfComponets;
+
+        return uf.numOfComponets == 1;
+
     }
+
 }
+
 class UnionFind {
     private int[] parents;
     private int[] size;
@@ -29,6 +44,7 @@ class UnionFind {
     public int find(int cur) {
         int root = cur;
         while (root != parents[root]) {
+            // this is  to find the ultimate parent of the node
             root = parents[root];
         }
         // Path Compression
@@ -45,12 +61,11 @@ class UnionFind {
         return size[parent];
     }
 
-    public void union(int node1, int node2) {
+    public boolean union(int node1, int node2) {
         int node1Parent = find(node1);
         int node2Parent = find(node2);
 
-        if (node1Parent == node2Parent)
-            return;
+        if (node1Parent == node2Parent) return false;
 
         if (size[node1Parent] > size[node2Parent]) {
             parents[node2Parent] = node1Parent;
@@ -60,19 +75,6 @@ class UnionFind {
             size[node2Parent] += size[node1Parent];
         }
         numOfComponets--;
+        return true;
     }
 }
-
-/*
-The time complexity of the Union-Find (Disjoint-Set) data structure, 
-when using both path compression and union by rank, is typically considered to be 
-nearly O(1) or amortized O(1) per operation, rather than O(log n) 
-or the inverse Ackermann function (α(n))
-
- * Time complexity: O(n^2 * α(n))
- * n^2 as we have a nested loop
- * 
- * where α(n) is the inverse Ackermann function - slow growing thus considered O(1)
- * 
- * Space complexity: O(n) - as we initialize an array with the size of n 
- */

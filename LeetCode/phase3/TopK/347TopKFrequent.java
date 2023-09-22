@@ -53,6 +53,12 @@ class Solution {
 /*
  *Input: nums = [1,1,1,2,2,3], k = 2
   Output: [1,2] 
+
+  Time complexity : O(n) which belongs to the loop where we map each number to the frequency
+
+  Space complexity: O(n)
+  In the worse case scenario,where there are n elements with different frequencies
+   both bucket1 and bucket2 can have n entries
  */
 
 

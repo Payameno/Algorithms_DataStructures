@@ -24,9 +24,11 @@ class MedianFinder {
 
       //Balance the heaps
       if (MinHeap.size() > MaxHeap.size()) {
+        //.poll() in minHeap removes the min value
         Integer numb = MinHeap.poll();
         MaxHeap.add(numb);
       } else if (MaxHeap.size()> MinHeap.size() + 1) {
+        //.poll() method in a maxHeap removes the max from the queue, time complexity (logn)
         Integer numb = MaxHeap.poll();
         MinHeap.add(numb);
       }
@@ -34,6 +36,8 @@ class MedianFinder {
     }
     
     public double findMedian() {
+
+      .peek() only retrives the max Value (O(1))
 
       if ((MaxHeap.size() + MinHeap.size()) % 2 != 0) return (double) MaxHeap.peek();
 

@@ -14,6 +14,15 @@ public class KnapSackDP {
     //define cache - Default value is 0
     int[][] cache = new int[profits.length][capacity + 1];
 
+    /*
+    * Input: Profits = [1, 6, 10, 16] weights = [1, 2, 3, 5] maxWeight = 7
+  idx 0 1 2 3 4 5 6 7
+    0 0 1 1 1 1 1 1 1 -> Filled in the first For Loop
+    1 0 1 6
+    2 0
+    3 0
+    */
+
     //Fill values for the first row
     for (int i = 1; i < capacity; i++) {
 

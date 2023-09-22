@@ -1,16 +1,36 @@
-class Solution {
-    public int findCircleNum(int[][] isConnected) {
-        int n = isConnected.length;
+class solution {
+
+    /*
+    Valid tree:
+    1-There is only one component
+    2-There is no cycle in the graph
+    */
+
+
+    public boolean validTree(int n, int[][] edges) {
+
         UnionFind uf = new UnionFind(n);
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
-                if(i == j || isConnected[i][j] == 0) continue;
-                uf.union(i, j);
+
+        for (int[] edge : edges) {
+            int uParent = uf.find(edge[0]);
+            int vParent = uf.find(edge[1]);
+            if (uParent == vParent) {
+                /*
+                two nodes are already connected, 
+                Therefore the edge will create a cycle
+                */
+                return false;
+            } else {
+                uf.union(edge[0], edge[1]);
             }
         }
-        return uf.numOfComponets;
+
+        return uf.numOfComponets == 1;
+
     }
+
 }
+
 class UnionFind {
     private int[] parents;
     private int[] size;
@@ -29,6 +49,7 @@ class UnionFind {
     public int find(int cur) {
         int root = cur;
         while (root != parents[root]) {
+            // this is  to find the ultimate parent of the node
             root = parents[root];
         }
         // Path Compression
@@ -62,17 +83,3 @@ class UnionFind {
         numOfComponets--;
     }
 }
-
-/*
-The time complexity of the Union-Find (Disjoint-Set) data structure, 
-when using both path compression and union by rank, is typically considered to be 
-nearly O(1) or amortized O(1) per operation, rather than O(log n) 
-or the inverse Ackermann function (α(n))
-
- * Time complexity: O(n^2 * α(n))
- * n^2 as we have a nested loop
- * 
- * where α(n) is the inverse Ackermann function - slow growing thus considered O(1)
- * 
- * Space complexity: O(n) - as we initialize an array with the size of n 
- */

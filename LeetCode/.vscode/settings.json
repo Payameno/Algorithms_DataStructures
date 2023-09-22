@@ -1,0 +1,8 @@
+{
+  "editor.fontSize": 26,
+  "files.autoSave": "onWindowChange",
+  "workbench.activityBar.iconClickBehavior": "toggle",
+  "workbench.colorTheme": "Community Material Theme Palenight High Contrast",
+  "workbench.preferredDarkColorTheme": "Default Dark+",
+  "workbench.sideBar.location": "right"
+}
