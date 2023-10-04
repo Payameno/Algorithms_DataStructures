@@ -4,35 +4,40 @@ import java.util.Map;
 
 class Solution_Bottom_Up {
 
-  List<List<Integer>> triangle;
-  List<Map<Integer,Integer>> cache;
+  /*
+   * Botto-UP approach
+   */
 
   public int minimumTotal(List<List<Integer>> triangle) {
-  
+
     int size = triangle.size();
     for (int row = size - 2; row >= 0; row--) {
 
       List<Integer> curRow = triangle.get(row);
-      List<Integer> preRow = triangle.get(row+1);
+      List<Integer> perRow = triangle.get(row + 1);
 
       for (int col = 0; col < row + 1; col++) {
+        //Calculate min sum
+        int leftSum = perRow.get(col);
+        int rightSum = perRow.get(col + 1);
 
-        int leftSum = preRow.get(col);
-        int rightSum = preRow.get(col+1);
-
-        curRow.set(col, Math.min(leftSum,rightSum) + curRow.get(col));
-
+        //Write min sum on current col
+        curRow.set(col, Math.min(leftSum,rightSum)+ curRow.get(col));
       }
-
     }
-
     return triangle.get(0).get(0);
   }
 
 }
 
 /*
- * Time complexity of the solution is:
+  BottomUp approach
+ * Time complexity:
+ * O(n) where n the number of nodes
+ * 
+ * Space compleixty:
+ * O(1)
+ * 
  */
 
 class Solution_Top_Down {
@@ -79,8 +84,13 @@ class Solution_Top_Down {
 }
 
 /*
- * Time complexity of the top down approach:
+  Top-Down Appraoch
+ * Time complexity: O(2^n) exponensaial
  * 
+ * Space Complexity: o(N^2)
+ * O(N) space used for the call stack
+ * O(N-1) space used for cache
+ * Where N is the number of rows
  */
 
 /*

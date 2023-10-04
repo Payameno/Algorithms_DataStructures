@@ -1,5 +1,0 @@
-package DPIntegerPartition;
-
-class solution {
-  
-}

@@ -19,7 +19,11 @@ class Solution {
     }
 }
 
-//[7,6,6,6,6,4]
-//         ^
-//[7,1,5,3,6,4]
-//           ^
+/*
+Time complexity: O(n)
+Space Complexity: o(1)
+
+[7,6,6,6,6,4]
+        <- ^ 
+*/
+

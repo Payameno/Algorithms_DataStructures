@@ -47,7 +47,13 @@ Solution
 In this file the knapSack brute force approach is chosen
 
 Time Complexity:
+It is exponential, at the recursive method has a branching factor of 2,
+at each level we have two decisions, either to take the current element or skip it. 
+Therefore the time complexity is O(2^n)
 
 Space Complexity:
+It is determined by the maximum depth of the recursion stack, for an array 
+with n elemts the maximum depth of the recursion stack is n 
+therefore the space complexity is 0(n)
 
 */
