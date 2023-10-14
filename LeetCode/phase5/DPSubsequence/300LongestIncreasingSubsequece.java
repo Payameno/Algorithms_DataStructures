@@ -4,7 +4,7 @@ class Solution {
      
       int[] Nums = nums;
       int n = nums.length;
-      imt[]cache new int[n];
+      int[] cache new int[n];
 
       cache[n - 1] = 1;
       int maxLis = 1;
