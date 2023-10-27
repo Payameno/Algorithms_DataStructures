@@ -23,9 +23,14 @@ class 154findminimumrotatedsortedarrayii {
 
 /*
  * Input: nums = [2,2,2,0,1]
- *                L
- *                         R
- *                    M
+ *                    L
+ *                      R
+ *                      M
+ * 
+ * Input: nums = [10,10,10,1,10]
+ *                       L
+ *                         M
+ *                           R
  * 
  * Time complexity for worst case scenario:
  * O(n) where we have n elements and n-2 elements are of the same value

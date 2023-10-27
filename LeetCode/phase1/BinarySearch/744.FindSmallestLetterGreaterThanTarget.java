@@ -4,10 +4,10 @@ class FindSmallestLetterGreaterThanTarget {
 
       //base
       int len = letters.length;
-      if (target < letters[0] || target >= letters[len-1]) return letters[0];
+      if (target < letters[0] || target >= letters[len - 1]) return letters[0];
       
       //define pointers
-      int leftIdx = 0, rightIdx = len-1;
+      int leftIdx = 0, rightIdx = len - 1;
 
       while (leftIdx + 1 < rightIdx) {
 

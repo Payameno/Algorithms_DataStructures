@@ -12,7 +12,7 @@ class Solution {
        * leading to worse performance for larger input sizes 
        * ->Whenever L and R become adjacent the loop exists
        */
-      while (L+1 < R) {
+      while (L + 1 < R) {
 
         //Base case
         if (nums[L] < nums[R]) return nums[L];
@@ -31,6 +31,12 @@ class Solution {
 }
 
 /*
+Time complexity:
+O(logn) Binary search
+Space complexity:
+O(1)
+
+
  * Time complexity: Binary Search Olog(n)
  * Input: nums = [4,5,6,7,0,1,2]
  *                        ^
