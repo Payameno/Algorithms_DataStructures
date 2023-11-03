@@ -35,7 +35,6 @@ class Solution4 {
                 TreeNode top = stack.pop();
                 res.add(top.val);
                 cur = top.right;
-
             } else {
                 stack.add(cur);
                 cur = cur.left;
@@ -48,6 +47,7 @@ class Solution4 {
 }
 
 /*
+
  * Iteretive inorder binary tree traversal
  * 
  * Time complexity: O(n) 

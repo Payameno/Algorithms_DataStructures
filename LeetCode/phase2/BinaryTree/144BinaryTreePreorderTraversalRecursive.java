@@ -22,21 +22,21 @@ class Solution {
 
     public List<Integer> preorderTraversal(TreeNode root) {
 
-      //Helper function to traverse in pre-order and add the results
-      helper(root);
+      //helper function to traverse in pre-order and add the results
+      dfs(root);
       return res;
 
     }
 
-    private void helper(TreeNode root) {
+    private void dfs(TreeNode root) {
 
       if (root == null) return;
 
       res.add(root.val);
       
       //recursive approach
-      helper(root.left);
-      helper(root.right);
+      dfs(root.left);
+      dfs(root.right);
 
     }
 

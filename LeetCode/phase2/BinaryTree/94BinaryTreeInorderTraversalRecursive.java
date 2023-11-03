@@ -23,12 +23,12 @@ class Solution {
 
         //In-order traversal by recursive approach
         dfs(root);
-
         return res;
     }
 
     private void dfs(TreeNode node) {
         
+        //base
         if (node == null) return;
 
         //Traverse the left subtree
@@ -41,3 +41,12 @@ class Solution {
         dfs(node.right);
     }
 }
+
+/*
+ * Time complexity:
+ * O(n) where n is the number of nodes
+ * 
+ * Space complexity:
+ * O(h) where h is the height if the binary tree, in a balanced tree 
+ * h = log(n) where n is the number of nodes
+ */
