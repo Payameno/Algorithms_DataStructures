@@ -64,6 +64,6 @@ class Solution {
  * in a skewed BST(a linear chain of nodes) h = n where n is the number of nodes in the bst
  * 
  * Space complexity:
- * O(h) memory utilization based on the call stack of recursion in helper function
- * In the worse case h = n, in a balanced tree h = logn
+ * O(h) based on the call stack memory utilization of recursion method(helper)
+ * In the worse case h = n where n is the number of nodes, in a balanced tree h = logn
  */
