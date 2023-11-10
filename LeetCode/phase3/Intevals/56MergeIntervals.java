@@ -19,8 +19,6 @@ class Solution {
       stack.add(intervals[0]);
 
       //Compare and possibly merge
-
-      //retrieve the top element
       for (int i = 1; i < intervals.length; i++) {
 
        int[] pre = stack.peek();

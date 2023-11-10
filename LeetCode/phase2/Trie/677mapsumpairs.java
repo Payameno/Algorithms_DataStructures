@@ -20,15 +20,20 @@ class MapSum {
         char[] stringToChar = key.toCharArray();
 
         for (char cur : stringToChar) {
+            //If character is not added as a try, put it as a child of temp
             if (!temp.children.containsKey(cur)) {
                 temp.children.put(cur,new Trie());
             }
+            //Assign the character as current temp
             temp = temp.children.get(cur);
+            //Add the assigned value to string to each and every char of trie
             temp.val += val;
+            //If a string input is repeated, subtract the old value in the trie
             if (map.containsKey(key)) {
                 temp.val -= map.get(key);
             }
         }
+        
         map.put(key, val);
     }
     
@@ -36,9 +41,11 @@ class MapSum {
         char[] prefixToChar = prefix.toCharArray();
         Trie temp = root;
         for (char cur : prefixToChar) {
+            //if the String is not inserted return zero
             if (!temp.children.containsKey(cur)) {
                 return 0;
             }
+            //Access the nodes in the trie to reach the leaf
             temp = temp.children.get(cur);
         }
         return temp.val;
