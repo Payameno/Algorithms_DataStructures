@@ -57,9 +57,17 @@ class Solution {
 
 Time complexity:
 
-Space complexity:
+N number of characters in S 
+M number of characters in t
 
-                
+O(M) for the mapping
+O(N) for searching for min sub
+
+O(M+N) is the time complexity
+
+Space complexity:
+O(1) constant
+
                  Input: s = "ADOBECODEBANC", t = "ABC"
                                       ----
                   A = 0
