@@ -40,6 +40,8 @@ class Solution {
 }
 
 /*
+Description of Diameter of a binary tree:
+The max length between any two nodes in a BST
  Time complexity:
  O(N) where N is the number of nodes, all nodes are visited once
 
