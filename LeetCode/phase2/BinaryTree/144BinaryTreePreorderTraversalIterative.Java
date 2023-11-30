@@ -19,7 +19,7 @@ class Solution {
     //Res list
     List<Integer> res = new LinkedList();
 
-    //base
+    //Base
     if (root == null) return res;
 
     //Stack for iterative approach
