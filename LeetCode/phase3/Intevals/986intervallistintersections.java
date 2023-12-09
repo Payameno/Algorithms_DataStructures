@@ -4,7 +4,7 @@ class Solution {
 
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
 
-        //Define a stack to storer results
+        //Define a stack to storer results (Arraylist or LinkedList can also be used)
         Stack<int[]> stack = new Stack<>();
         
         //Define the pointers and lists length
