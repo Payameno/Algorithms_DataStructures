@@ -17,7 +17,7 @@ class Solution {
     }
 
     private void helper(List<Integer> list, List<Integer> curComb) {
-        //If list empty
+        //Reached the end of call stack
         if (list.isEmpty()) {
             List<Integer> temp = new LinkedList<>(curComb);
             res.add(temp);
@@ -96,4 +96,5 @@ Constraints:
 1 <= nums.length <= 6
 -10 <= nums[i] <= 10
 All the integers of nums are unique.
+
  */
