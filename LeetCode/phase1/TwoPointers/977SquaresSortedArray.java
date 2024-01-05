@@ -61,5 +61,13 @@ class solution {
 
 }
 
-//Input: nums = [-7,-3,2,3,11]
-//               l          r
+
+/*
+ Time complexity:
+ O(n) 
+ first loop in the worst case to find the mid o(n)
+ second loop to iterate throguh the array in worst case o(n)
+
+ Space Complexity:
+ O(n) where n is the number of items in the nums, res
+ */
