@@ -8,7 +8,7 @@ class solution {
         int gap = Integer.MAX_VALUE, ans = 0;
 
         //Iterate using two pointers
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n - 1; i++) {
             //Define pointers
             int Left = i + 1, Right = n - 1;
 
