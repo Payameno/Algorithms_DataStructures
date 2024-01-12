@@ -57,6 +57,11 @@ class solution {
  Problem:
 The question had three parameters
 
+Needed [5,4,3,] 
+Answered [2,5,1]
+q = 3
+constraints 1 < n < 10 ^ 5
+
 1- needed: A list of integers:representing the number of questions required to pass 
 a subject. Indices represent each subject.
 
