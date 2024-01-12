@@ -126,8 +126,13 @@ class Solu {
 
 /*
  Time complexity:
+The worst-case time complexity is still (9^81)
+which is a large but finite number (81 cells to fill, each with 9 possibilities).
+In practice, the algorithm often performs much better than this worst-case scenario.
 
  Space complexity:
+The space complexity is O(1) because the extra space used by the algorithm 
+does not depend on the size of the input (Sudoku grid). 
 
 
  Example 1:
