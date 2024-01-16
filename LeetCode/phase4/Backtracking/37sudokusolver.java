@@ -134,7 +134,7 @@ In practice, the algorithm often performs much better than this worst-case scena
 The space complexity is O(1) because the extra space used by the algorithm 
 does not depend on the size of the input (Sudoku grid). 
 
-
+``
  Example 1:
 Input: board = [
 ["5","3",".",".","7",".",".",".","."],
