@@ -19,7 +19,7 @@ class Solution {
             if(Integer.parseInt(str) > 26){
                 cache[i] = cache[i + 1];  //if it was 27 -> cache[1] = 1 (7 & 2)
             }else if(i == n - 2){
-                cache[i] = cache[i + 1] + 1; // cache[1] = cache[2] + 1 = 2 (2 comb: 26 & 2,6) cache = [0, 2, 1]
+                cache[i] = cache[i + 1] + 1; // cache[1] = cache[2] + 1 = 2 (2 c omb: 26 & 2,6) cache = [0, 2, 1]
             }
             else{
                 cache[i] = cache[i + 1] + cache[i + 2]; // cache[0] = 3
