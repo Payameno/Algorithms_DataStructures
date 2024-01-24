@@ -15,8 +15,10 @@ class Solution {
 
 /*
  Time complexity:
+ O(n)
 
  Space complexity:
+ O(1)
 
 Example 1:
 Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
